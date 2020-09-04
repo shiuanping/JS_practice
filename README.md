@@ -1,1 +1,1 @@
-# JS_practice
+# Lavik-hostel
