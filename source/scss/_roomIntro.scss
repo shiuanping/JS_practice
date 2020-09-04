@@ -61,7 +61,18 @@
 .searchMessage{
     font-size: 16px;
 }
-
-.reserveNotice{
-    font-size: 16px;
+.reverseBlock{
+    .reverseNotice{
+        ul{
+            font-size: 16px;
+        }
+        i{
+            font-size: 12px;
+        }
+    }
+    input{
+        border-width: 0 0 2px 0;
+        outline-width: 0;
+    }
 }
+
