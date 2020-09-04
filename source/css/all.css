@@ -10978,7 +10978,16 @@ body {
   font-size: 16px;
 }
 
-.reserveNotice {
+.reverseBlock .reverseNotice ul {
   font-size: 16px;
+}
+
+.reverseBlock .reverseNotice i {
+  font-size: 12px;
+}
+
+.reverseBlock input {
+  border-width: 0 0 2px 0;
+  outline-width: 0;
 }
 /*# sourceMappingURL=all.css.map */
