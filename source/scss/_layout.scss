@@ -1,0 +1,34 @@
+body{
+    font-family: 'PT Serif',serif;
+    line-height: 1.5;
+  }
+.header{
+  background-color: #3e3e3e;
+  h1 a{
+    width: 192px;
+    height: 45px;
+    font-size: 35px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-indent: 101%;
+    overflow: hidden;
+    white-space: nowrap;
+    background-image: url(https://kakadodo.github.io/theF2EChallange/img/2nd-week6/logo.svg);
+    background-position: center center;
+  }
+  a{
+    color:#000;
+    text-decoration: none;
+  }
+  img{
+    width: 100%;
+    height: auto;
+  } 
+    
+}
+.banner{
+  img{
+    object-fit: fill;
+  }
+}

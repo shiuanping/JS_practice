@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>房型介紹｜lavik-hostel</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="css/all.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container-fluid bg-primary header">
+        <div class="container py-3">
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-between align-items-center">
+                    <h1 class='mb-0'><a class='d-block mb-0' href='../index.html'>Lavik</a></h1>
+                    <a href="../index.html#rooms" class='text-white'>Rooms</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid banner px-0">
+        <img class='w-100 h-100 mb-n2' src="https://kakadodo.github.io/theF2EChallange/img/2nd-week6/hero.png" alt="">
+    </div>
+    <div class="container-fluid bg-secondary">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-4">
+                    <ul class='roomMenu list-unstyled'></ul>
+                </div>
+                <div class="col-md-8 d-flex flex-column justify-content-start align-items-start">
+                    <h2 class='roomName text-center text-primary font-weight-bold w-100 mb-4'></h2>
+                    <div class="roomInfoImg d-block mb-3 w-100"></div>
+                    <form action="" class='w-100 mb-3'>
+                        <div class='d-flex align-items-center'>
+                            <input class='searchDate col-5 py-2 px-1 text-black-50' type="text" name="daterange">
+                            <button class='search col-2 btn btn-primary py-2 rounded-0 text-white mr-2' type='button' data-toggle="modal" data-target="#searchData">空房查詢</button>
+                            
+                        </div>
+                    </form>
+                    <div class="roomDetail"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-primary">
+        <div class="container py-3">
+            <div class="row justify-content-between align-items-center text-white">
+                <div class='d-flex align-items-center'>
+                    <img class='logo img-fluid mr-3' src="https://kakadodo.github.io/theF2EChallange/img/2nd-week6/logo.svg" alt="">
+                    <div class="col-md-12">
+                        <p class='mb-0'>(847) 797 7339</p>
+                        <p class='mb-0'>Kata Road, Karon Sub District, Slovenia</p>
+                    </div>
+                </div>
+                <div>
+                    <p class='mb-0'>lavik-hostel@hostel.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- 預約表單 -->
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header d-flex justify-content-between align-items-center p-0">
+                <div class='col-md-1'></div>
+                <h5 class="modal-title text-center text-primary font-weight-bold" id="exampleModalCenterTitle">Reservation Information</h5>
+                <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12 d-flex justify-content-between reverseBlock py-4">
+                    <div class='col-md-6'>
+                        <div class='reserveNotice'></div>
+                        <p class='font-weight-bold'>總計：<span class='total'>$ 0</span></p>    
+                    </div>
+                    <form class='col-md-6' action="">
+                        <label>姓名</label><br>
+                        <input class='customerName w-100 border-primary mb-3' type="text"><br>
+                        <label>電話</label><br>
+                        <input class='customerTele w-100 border-primary mb-3' type="text"><br>
+                        <div class='mb-3'>
+                            <label>預約日期</label><br>
+                            <input class='reserveTime w-100 border-primary mb-3' type="text"><br>
+                        </div>
+                        <button class='submit btn btn-primary text-white w-50' type='button'>送出</button>
+                    </form>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- 預約查詢 -->
+
+    <div class="modal fade" id="searchData" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">查詢結果</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class='searchMessage text-dark'></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    <script src="./js/roomIntro.js"></script>
+    <script src="./js/reserve.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.searchDate').daterangepicker({
+            opens: 'left',
+            minDate:`${nowTime}`,
+            maxDate:moment(now).add(3,'month'),
+            autoApply:true,
+            locale:{
+            format: 'YYYY/MM/DD',
+            separator: '~',
+            }
+            });
+            $('.reserveTime').daterangepicker({
+            opens: 'left',
+            minDate:`${nowTime}`,
+            maxDate:moment(now).add(3,'month'),
+            autoApply:true,
+            locale:{
+            format: 'YYYY/MM/DD',
+            separator: '~',
+            }
+            });
+            $('#myModal').on('shown.bs.modal', function () {
+                $('#myInput').trigger('focus')
+            })
+            $('.reserveTime').on('apply.daterangepicker', function() {
+                countTotal();
+            })
+        })
+        
+    </script>
+</body>
+</html>

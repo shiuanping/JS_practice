@@ -1,0 +1,21 @@
+.reserveContain{
+    background-color: #fff;
+}
+.reverseBlock{
+    margin: 0 auto;
+    .reverseNotice{
+        ul{
+            font-size: 16px;
+        }
+        i{
+            font-size: 12px;
+        }
+        small{
+            font-size: 14px;
+        }
+    }
+    input{
+        border-width: 0 0 2px 0;
+        outline-width: 0;
+    }
+}

@@ -1,0 +1,63 @@
+.room{
+    display: flex;
+    div:nth-child(2){
+        width: 50%;
+    }
+}
+.roomDetail{
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    .serviceTable{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        li{
+            width: 50%;
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            p{
+                font-size: 16px;
+                margin-bottom: 0;
+            }
+        }
+    }
+    .serve{
+        color: $primary;
+    }
+    .notServe{
+        color: #888;
+    }
+    .roomType{
+        li{
+            display: flex;
+            i{
+                font-size: 30px;
+            }
+        }
+        p{
+            margin-bottom: 0;
+        }
+    }
+}
+.roomInfoImg{
+    height: 320px;
+    margin: 0 auto;
+    background-position: center center;
+    background-size: cover;
+}
+.priceTable{
+    font-size: 15px;
+    i{
+        font-size: 12px;
+        margin-right: 15px;
+    }
+}
+
+.bookingForm{
+    margin: 0 auto;
+}
+.searchMessage{
+    font-size: 16px;
+}
