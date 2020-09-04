@@ -10801,6 +10801,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 body {
   font-family: 'PT Serif',serif;
+  font-size: 16px;
   line-height: 1.5;
 }
 
@@ -10977,28 +10978,7 @@ body {
   font-size: 16px;
 }
 
-.reserveContain {
-  background-color: #fff;
-}
-
-.reverseBlock {
-  margin: 0 auto;
-}
-
-.reverseBlock .reverseNotice ul {
+.reserveNotice {
   font-size: 16px;
-}
-
-.reverseBlock .reverseNotice i {
-  font-size: 12px;
-}
-
-.reverseBlock .reverseNotice small {
-  font-size: 14px;
-}
-
-.reverseBlock input {
-  border-width: 0 0 2px 0;
-  outline-width: 0;
 }
 /*# sourceMappingURL=all.css.map */
