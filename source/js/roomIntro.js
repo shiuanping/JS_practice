@@ -114,7 +114,7 @@ axios.get(`${url}room/${id}`).then(function(res){
         <li class='mb-3 d-flex align-items-center'><i class="fas fa-circle text-primary mr-2"></i>平日（週一至週四）$NT ${roomInforData.normalDayPrice} ； 假日（週五至週日）$NT ${roomInforData.holidayPrice}</li>
         <li class='mb-3 d-flex align-items-center'><i class="fas fa-circle text-primary mr-2"></i>入住時間：${checkTime['checkInEarly']}-${checkTime['checkInLate']}；退房時間：${checkTime['checkOut']}</li>
         <li class='mb-3 d-flex align-items-center'><i class="fas fa-circle text-primary mr-2"></i>平日定義週一至週四；假日定義週五至週日及國定假日。</li>
-        <li class='mb-3 d-flex align-items-center'><i class="fas fa-circle text-primary mr-2"></i>好室旅店全面禁止吸菸。</li>
+        <li class='mb-3 d-flex align-items-center'><i class="fas fa-circle text-primary mr-2"></i>Lavik-hostel全面禁止吸菸。</li>
     </ul>
     `
 })
@@ -146,7 +146,6 @@ let reserveDateRange=(searchDate)=>{
     
 }
 let searchRoom=()=>{
-    console.log(roomServeRecord);
     let booked=[];
     let searchDate = document.querySelector('.searchDate').value;
     let searchRange = reserveDateRange(searchDate);
@@ -182,16 +181,18 @@ let searchRoom=()=>{
 
 let processData=(name)=>{
     let data={}
+    let checkOutDate=''
     data.name=name;
     data.date=[];
     // data.name=roomServeRecord[0].name;
     roomServeRecord.forEach(function(recordItem){
         if(name==recordItem.name){
             data.date.push(recordItem.date);
-        }else{
-            return data;
         }
     })
+    checkOutDate = new Date(data.date[data.date.length-1].replace(/\-/g,'/'));
+    checkOutDate = new Date(checkOutDate.setDate(checkOutDate.getDate()+1));
+    data.date.push(dateFormat(checkOutDate));
     return data;
 }
 

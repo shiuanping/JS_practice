@@ -5,7 +5,8 @@ let reserveRoom =()=>{
     let customerName = document.querySelector('.customerName').value;
     let customerTele = document.querySelector('.customerTele').value;
     reserveTimeStr = reserveTime.value;
-    let reserveDate = reserveDateRange(reserveTimeStr);
+    let reserveDate = reserveDateRange(reserveTimeStr).slice(0,-1);
+    console.log(reserveDate);
     let booking={
         name:customerName,
         tel:customerTele,
