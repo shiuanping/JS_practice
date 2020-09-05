@@ -150,10 +150,10 @@ let searchRoom=()=>{
     let searchDate = document.querySelector('.searchDate').value;
     let searchRange = reserveDateRange(searchDate);
     let reserveRecordData=``
-    let recordNight =  roomServeRecord.slice(0,-1);;
+    // let recordNight =  roomServeRecord.slice(0,-1);;
     searchRange.forEach(function(searchRangeItem){
-        recordNight.forEach(function(recordNightItem){
-            if(searchRangeItem == recordNightItem.date){
+        roomServeRecord.forEach(function(roomServeRecordItem){
+            if(searchRangeItem == roomServeRecordItem.date){
                 booked.push(searchRangeItem);
             }
         })

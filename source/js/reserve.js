@@ -6,7 +6,6 @@ let reserveRoom =()=>{
     let customerTele = document.querySelector('.customerTele').value;
     reserveTimeStr = reserveTime.value;
     let reserveDate = reserveDateRange(reserveTimeStr).slice(0,-1);
-    console.log(reserveDate);
     let booking={
         name:customerName,
         tel:customerTele,
@@ -15,7 +14,8 @@ let reserveRoom =()=>{
     axios.post(`${url}room/${id}`,booking).then(function(res){
         let reserveResult = res.data.success;
         if(reserveResult==true){
-            alert('預約成功');
+            console.log(booking.date);
+            alert(`預約成功`);
             window.location.reload();
         }
     }).catch((error)=>{
