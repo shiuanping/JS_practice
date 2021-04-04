@@ -1,12 +1,11 @@
 const url='https://challenge.thef2e.com/api/thef2e2019/stage6/';
 const token='1ujOhhjO8doC3146McKZPgkJqoEc7EdCPX1mbZj9MxFzJynuQoKtMOLFCYdX';
 const roomList = document.querySelector('.roomList');
-// const roomInfo = document.querySelector('.roomInfo')
 
 
 let roomData=[];
-// let roomInforData=[]
 
+//取得資料，渲染至頁面
 axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 axios.get(`${url}rooms`).then(function(res){
   let content=``;

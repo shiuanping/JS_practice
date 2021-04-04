@@ -1,15 +1,17 @@
 const reserveTime = document.querySelector('.reserveTime');
 let reserveTimeStr = reserveTime.value;
 
+
+//預約房間
 let reserveRoom =()=>{
     let customerName = document.querySelector('.customerName').value;
     let customerTele = document.querySelector('.customerTele').value;
     reserveTimeStr = reserveTime.value;
     let reserveDate = reserveDateRange(reserveTimeStr).slice(0,-1);
     let booking={
-        name:customerName,
-        tel:customerTele,
-        date:reserveDate,
+        name: customerName,
+        tel: customerTele,
+        date: reserveDate,
     }
     axios.post(`${url}room/${id}`,booking).then(function(res){
         let reserveResult = res.data.success;
@@ -24,14 +26,15 @@ let reserveRoom =()=>{
 
 }
 
+//取得目前時間，並轉換格式
 let now = new Date();
 let nowTime = dateFormat(now).replace(/\-/g,'/');
 
-
+//計算價格
 let countTotal=()=>{
     reserveTimeStr = reserveTime.value;
     let reserveDate = reserveDateRange(reserveTimeStr);
-    reserveDate.splice(-1);
+    reserveDate.splice(-1);  //扣除退房當天
     let totalPrice=0;
     let holiDay=0;
     let normalDay=0;

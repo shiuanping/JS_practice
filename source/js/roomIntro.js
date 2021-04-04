@@ -1,12 +1,13 @@
 const url='https://challenge.thef2e.com/api/thef2e2019/stage6/';
 const token='1ujOhhjO8doC3146McKZPgkJqoEc7EdCPX1mbZj9MxFzJynuQoKtMOLFCYdX';
+
+//指定DOM
 const roomMenu = document.querySelector('.roomMenu');
 const search = document.querySelector('.search');
 const roomName = document.querySelector('.roomName');
 const roomInfoImg = document.querySelector('.roomInfoImg');
 const roomDetail = document.querySelector('.roomDetail');
 const searchMessage = document.querySelector('.searchMessage');
-
 
 const total = document.querySelector('.total');
 const reserveNotice = document.querySelector('.reserveNotice');
@@ -17,7 +18,7 @@ let roomInforData=[];
 let roomServeRecord=[];
 let id = window.location.href.split('=')[1];
 
-
+//設定token
 axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 axios.get(`${url}rooms`).then(function(res){
     let content=''
@@ -28,9 +29,7 @@ axios.get(`${url}rooms`).then(function(res){
     roomMenu.innerHTML=content;
 })
 
-
-
-
+//取得房間資訊，渲染畫面
 axios.get(`${url}room/${id}`).then(function(res){
     roomInforData=res.data.room[0];
     if(('booking' in res.data) == true){
@@ -119,6 +118,8 @@ axios.get(`${url}room/${id}`).then(function(res){
     `
 })
 
+
+//轉換日期格式
 let dateFormat=(datedata)=>{
     let year = datedata.getFullYear();
     let month = datedata.getMonth() +1;
@@ -129,7 +130,7 @@ let dateFormat=(datedata)=>{
   }
   
   
-  
+//將預約期間轉為陣列
 let reserveDateRange=(searchDate)=>{
     let dateLis = searchDate.split('~');
     let startDate = new Date(dateLis[0].replace(/\-/g,'/'));
@@ -145,12 +146,14 @@ let reserveDateRange=(searchDate)=>{
     return dateData;
     
 }
+
+//空房查詢
 let searchRoom=()=>{
     let booked=[];
     let searchDate = document.querySelector('.searchDate').value;
     let searchRange = reserveDateRange(searchDate);
-    let reserveRecordData=``
-    // let recordNight =  roomServeRecord.slice(0,-1);;
+    let reserveRecordData=``;
+    //逐筆比對欲預約日期和已被預約日期是否有重複，重複日期存入booked陣列
     searchRange.forEach(function(searchRangeItem){
         roomServeRecord.forEach(function(roomServeRecordItem){
             if(searchRangeItem == roomServeRecordItem.date){
@@ -162,6 +165,7 @@ let searchRoom=()=>{
     roomServeRecord.forEach(function(recordItem){
         booked.forEach(function(bookedItem){
             let data = processData(recordItem.name);
+            //撈出重複日期的預約人、預約時間資料
             if(recordItem.date==bookedItem){
                 if(recordItem.name!==oriName){
                     reserveRecordData += `<li class='mb-2'>預約人：${data.name} — 預約時間：${data.date[0]} 到 ${data.date[data.date.length-1]}</li>`
@@ -179,24 +183,25 @@ let searchRoom=()=>{
     }
 }
 
+//將已預約日期的預約人、預約日期（入住日期、退房日期）存為物件回傳
 let processData=(name)=>{
     let data={}
     let checkOutDate=''
     data.name=name;
     data.date=[];
-    // data.name=roomServeRecord[0].name;
     roomServeRecord.forEach(function(recordItem){
         if(name==recordItem.name){
             data.date.push(recordItem.date);
         }
     })
+    //將日期轉換格式後，將原本退房日期加回來
     checkOutDate = new Date(data.date[data.date.length-1].replace(/\-/g,'/'));
-    checkOutDate = new Date(checkOutDate.setDate(checkOutDate.getDate()+1));
+    checkOutDate = new Date(checkOutDate.setDate(checkOutDate.getDate()+1));  
     data.date.push(dateFormat(checkOutDate));
     return data;
 }
 
-
+//清除所有預約
 let clearAll=()=>{
     axios.delete(`https://challenge.thef2e.com/api/thef2e2019/stage6/rooms`).then(function(res){
         let clearResult = res.data.success;
